@@ -35,8 +35,12 @@ Fake Overflow is a simple discussion forum web application where users can creat
     python -m venv venv
     source venv/bin/activate
 ```
-4. Run app.py
+4. Install Flask
+```bash
+    pip install Flask
+```
+6. Run app.py
 ```bash
     python app.py
 ```
-5. Access the website at [http://127.0.0.1:5000]
+6. Access the website at [http://127.0.0.1:5000]
