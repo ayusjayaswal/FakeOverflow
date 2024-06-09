@@ -23,7 +23,7 @@ Fake Overflow is a simple discussion forum web application where users can creat
 ## Setup
 1. Clone the repo
 ```bash
-   git clone https://github.com/your-username/fake-overflow.git
+   git clone https://github.com/ayusjayaswal/FakeOverflow.git
 ``` 
 2. Move to local branch
 ```bash
