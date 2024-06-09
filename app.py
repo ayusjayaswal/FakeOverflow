@@ -74,6 +74,6 @@ def get_all_tags():
         tags.update(discussion['tags'])
     return tags
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+#    app.run(debug=True)
 
