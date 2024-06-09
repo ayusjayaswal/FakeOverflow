@@ -1,81 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discussions</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  </head>
-  <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{ url_for('index') }}">
-	<h2>Fake Overflow</h2>
-	<p>Best place to take fake opinions of fake people...</p>
-      </a>
-      <div class="d-none d-lg-block ml-auto">
-	<a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake Overflow</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('index') }}">
+      <h2>Fake Overflow</h2>
+      <p>Best place to take fake opinions of fake people...</p>
+    </a>
+    <div class="d-none d-lg-block ml-auto">
+      <a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
+    </div>
+    <div class="d-block d-lg-none mx-auto">
+      <a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1 class="mb-4">Active Discussions</h1>
+
+    <!-- Search Form -->
+    <form class="form-inline mb-4" action="{{ url_for('index') }}" method="get">
+      <div class="input-group w-100">
+        <input type="text" class="form-control" name="search" placeholder="Search discussions"
+          value="{{ request.args.get('search', '') }}">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
       </div>
-      <div class="d-block d-lg-none mx-auto">
-	<a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
-      </div>
-    </nav>
-    
-    <div class="container mt-5">
-      <h1 class="mb-4">Active Discussions</h1>
-      
-      <!-- Search Form -->
-      <form class="form-inline mb-4" action="{{ url_for('index') }}" method="get">
-        <div class="input-group w-100">
-          <input type="text" class="form-control" name="search" placeholder="Search discussions" value="{{ request.args.get('search', '') }}">
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Tags Filter -->
+    <div class="tags mb-4">
+      {% for tag in all_tags %}
+      <a href="{{ url_for('index', tag=tag) }}" class="badge badge-secondary">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+
+    <!-- Discussions List -->
+    <div class="row">
+      {% for discussion_id, discussion in discussions.items() %}
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ url_for('discussion', discussion_id=discussion_id) }}">{{ discussion.title }}</a>
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">by {{ discussion.username }}</h6>
+            <p class="card-text">
+              {% for tag in discussion.tags %}
+              <span class="badge badge-info">#{{ tag }}</span>
+              {% endfor %}
+            </p>
           </div>
         </div>
-      </form>
-
-      <!-- Tags Filter -->
-      <div class="tags mb-4">
-        {% for tag in all_tags %}
-        <a href="{{ url_for('index', tag=tag) }}" class="badge badge-secondary">#{{ tag }}</a>
-        {% endfor %}
       </div>
+      {% endfor %}
+    </div>
+  </div>
 
-      <!-- Discussions List -->
-      <div class="row">
-        {% for discussion_id, discussion in discussions.items() %}
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">
-                <a href="{{ url_for('discussion', discussion_id=discussion_id) }}">{{ discussion.title }}</a>
-              </h5>
-              <h6 class="card-subtitle mb-2 text-muted">by {{ discussion.username }}</h6>
-              <p class="card-text"> 
-                {% for tag in discussion.tags %}
-                <span class="badge badge-info">#{{ tag }}</span>
-                {% endfor %}
-              </p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- Footer -->
-    <div class="footer">
-      <p>&copy; 2023 Discussion Forum | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
-    
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2023 Discussion Forum | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </div>
+
+  <!-- Bootstrap JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
 </html>
-
