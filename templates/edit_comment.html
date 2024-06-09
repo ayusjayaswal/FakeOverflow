@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Comment</title>
+   <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+</head>
+<body>
+
+  <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{{ url_for('index') }}"><h2>Fake Overflow</h2></a>
+      <br> Best place to take fake opinions of fake people...
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Edit Comment</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <textarea id="comment" name="comment" class="form-control" required>{{ discussions[discussion_id]['comments'][comment_id]['comment'] }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+<a href="{{ url_for('discussion', discussion_id=discussion_id) }}" class="btn btn-secondary">Back</a>
+        
+
+        </form>
+    </div>
+</body>
+</html>
