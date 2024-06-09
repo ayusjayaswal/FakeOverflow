@@ -21,6 +21,13 @@ h1{
     color:#f4976c;
     font-family: 'Glass Antiqua', cursive;
 }
+.navbar a{
+    margin:5px;
+}
+.navbar p{
+    font-size: 15px;
+    margin:0;
+}
 
 .navbar {
     margin-bottom: 20px;
