@@ -2,6 +2,8 @@
 Take Fake Opinions of Fake People.
 Fake Overflow is a simple discussion forum web application where users can create discussions, add comments, edit discussions/comments, and filter discussions by tags. The application is deployed [at Vercel](https://fake-overflow-git-main-ayush-jayaswals-projects.vercel.app/).
 
+## Local Setup
+To setup the website locally follow the setup instructions given in the local branch of this repository [here](https://github.com/ayusjayaswal/FakeOverflow/tree/local)
 ## Features
 
 - **Create Discussions:** Users can create new discussions by providing a title, username, and tags.
