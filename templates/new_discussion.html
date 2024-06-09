@@ -11,17 +11,18 @@
 </head>
 <body>
 
-  <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{ url_for('index') }}"><h2>Fake Overflow</h2></a>
-      <br> Best place to take fake opinions of fake people...
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
-                </li>
-            </ul>
-        </div>
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+	<h2>Fake Overflow</h2>
+	<p>Best place to take fake opinions of fake people...</p>
+      </a>
+      <div class="d-none d-lg-block ml-auto">
+	<a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
+      </div>
+      <div class="d-block d-lg-none mx-auto">
+	<a class="btn btn-success" href="{{ url_for('new_discussion') }}">Start a New Discussion</a>
+      </div>
     </nav>
 
 
