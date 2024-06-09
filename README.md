@@ -27,6 +27,7 @@ Fake Overflow is a simple discussion forum web application where users can creat
 ``` 
 2. Move to local branch
 ```bash
+    cd FakeOverflow
     git checkout local
 ```
 3. Create python virtual environment
