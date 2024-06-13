@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
+
 app = Flask(__name__)
 
 # Placeholder for in-memory storage
@@ -13,8 +14,8 @@ def index():
     if tag_filter:
         filtered_discussions = {id: disc for id, disc in filtered_discussions.items() if tag_filter in disc['tags']}
     if search_query:
-        filtered_discussions = {id: disc for id, disc in filtered_discussions.items() if search_query.lower() in disc['title'].lower() or any(search_query.lower() in comment['comment'].lower() for comment in disc['comments']) or search_query.lower() in disc['username'].lower()}
-        
+        filtered_discussions = {id: disc for id, disc in filtered_discussions.items() if search_query.lower() in disc['title'].lower()}
+    
     return render_template('index.html', discussions=filtered_discussions, all_tags=get_all_tags())
 
 @app.route('/discussion/<int:discussion_id>')
@@ -45,11 +46,12 @@ def add_comment(discussion_id):
     discussion = discussions.get(discussion_id)
     if discussion is None:
         abort(404)
-        username = request.form['username']
-        comment_text = request.form['comment']
-        new_comment = {'username': username, 'comment': comment_text}
-        discussion['comments'].append(new_comment)
+    username = request.form['username']
+    comment_text = request.form['comment']
+    new_comment = {'username': username, 'comment': comment_text}
+    discussion['comments'].append(new_comment)
     return redirect(url_for('discussion', discussion_id=discussion_id))
+
 
 @app.route('/edit_comment/<int:discussion_id>/<int:comment_id>', methods=['GET', 'POST'])
 def edit_comment(discussion_id, comment_id):
@@ -65,10 +67,13 @@ def edit_comment(discussion_id, comment_id):
 
     return render_template('edit_comment.html', discussion_id=discussion_id, comment_id=comment_id, discussions=discussions)
 
+
 def get_all_tags():
     tags = set()
     for discussion in discussions.values():
         tags.update(discussion['tags'])
     return tags
+
 #if __name__ == '__main__':
 #    app.run(debug=True)
+
