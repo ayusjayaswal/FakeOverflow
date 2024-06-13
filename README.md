@@ -10,7 +10,7 @@ To setup the website locally follow the setup instructions given in the local br
 - **Add Comments:** Users can add comments to existing discussions.
 - **Edit Discussions/Comments:** Users can edit their own discussions and comments.
 - **Filter by Tags:** Discussions can be filtered by tags to find relevant topics.
-- **Search Discussions:** Users can search for specific terms in discussion Titles, Comments and Authors of Discussions.
+- **Search Discussions:** Users can search for specific terms in Discussion Titles, Comments and Authors of Discussions.
 - **Modern UI:** The application has a modern and user-friendly interface.
 
 ## Technologies Used
