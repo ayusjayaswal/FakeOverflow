@@ -46,7 +46,7 @@
 
       <!-- Discussions List -->
       <div class="row">
-        {% for discussion_id, discussion in discussions.items() %}
+        {% for discussion_id, discussion in discussions.items()|reverse %}
         <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-body">
@@ -65,6 +65,7 @@
         {% endfor %}
       </div>
     </div>
+
     
     <!-- Footer -->
     <div class="footer">
