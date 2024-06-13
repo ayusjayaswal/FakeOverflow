@@ -13,8 +13,9 @@ def index():
     filtered_discussions = discussions
     if tag_filter:
         filtered_discussions = {id: disc for id, disc in filtered_discussions.items() if tag_filter in disc['tags']}
-    if search_query:
-        filtered_discussions = {id: disc for id, disc in filtered_discussions.items() if search_query.lower() in disc['title'].lower()}
+
+ if search_query:
+        filtered_discussions = {id: disc for id, disc in filtered_discussions.items() if search_query.lower() in disc['title'].lower() or any(search_query.lower() in comment['comment'].lower() for comment in disc['comments']) or search_query.lower() in disc['username'].lower()}
     
     return render_template('index.html', discussions=filtered_discussions, all_tags=get_all_tags())
 
