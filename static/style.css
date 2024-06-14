@@ -14,7 +14,9 @@ background-attachment: fixed;
 background-size: cover;
        color: #333;
      }
-
+.mt-5{
+    word-wrap: break-word;
+}
 h1{
     font-family: 'Glass Antiqua', cursive;
     color: #343a40;
